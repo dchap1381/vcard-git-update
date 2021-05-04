@@ -54,7 +54,7 @@ if [ -e /home/pi/vcard-git-update/updateinstall.sh ];
 	then
 		#updateinstall.sh does exist
 		echo "/home/pi/vcard-git-update/updateinstall.sh does exist!"
-		if mv /home/pi/vard-git-update/updateinstall.sh /home/pi/update-scripts-wdir/;
+		if mv /home/pi/vcard-git-update/updateinstall.sh /home/pi/update-scripts-wdir/;
 			then
 				echo "move updateinstall.sh to working directory successful!"
 				if chmod +x /home/pi/update-scripts-wdir/updateinstall.sh;
