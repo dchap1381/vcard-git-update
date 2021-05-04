@@ -55,4 +55,4 @@ fi
 
 #reboot system to run gitcheck.sh
 read -p "Press enter to reboot"
-reboot
+#reboot
