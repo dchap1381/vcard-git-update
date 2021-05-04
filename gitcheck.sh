@@ -92,4 +92,5 @@ if /home/pi/update-scripts-wdir/updateinstall.sh;
 		echo "updateinstall.sh NOT completed successfully!!! Please try again."
 fi
 
+read -p "Press enter to continue"
 reboot
