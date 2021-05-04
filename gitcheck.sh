@@ -9,15 +9,15 @@ git-pull()	{
 }
 
 md5sum-gitcheck()	{
-	md5sum /home/pi/vcard-git-update/gitcheck.sh > tee /home/pi/update-scripts-wdir/gitcheck.md5sum
+	md5sum /home/pi/vcard-git-update/gitcheck.sh | tee /home/pi/update-scripts-wdir/gitcheck.md5sum
 }
 
 md5sum-updateinstall()	{
-	md5sum /home/pi/vcard-git-update/updateinstall.sh > tee /home/pi/update-scripts-wdir/updatinstall.md5sum
+	md5sum /home/pi/vcard-git-update/updateinstall.sh | tee /home/pi/update-scripts-wdir/updatinstall.md5sum
 }
 
 cd-update-scripts-wdir()	{
-	cd /home/pi/update-scripts-wdir
+	cd /home/pi/update-scripts-wdir || return
 }
 
 md5check-gitcheck()	{
@@ -25,7 +25,7 @@ md5check-gitcheck()	{
 }
 
 cp-gitcheck()	{
-	cp /home/pi/vcard-git-update/gitcheck.sh
+	cp /home/pi/vcard-git-update/gitcheck.sh /home/pi/update-scripts-wdir
 }
 
 md5check-updateinstall()	{
@@ -33,7 +33,7 @@ md5check-updateinstall()	{
 }
 
 cp-updateinstall()	{
-	cp /home/pi/vcard-git-update/updateinstall.sh
+	cp /home/pi/vcard-git-update/updateinstall.sh /home/pi/update-scripts-wdir
 }
 
 chmod-updatinstall()	{
@@ -136,5 +136,5 @@ if rm-updateinstall:
 fi
 
 sleep 5
-read -p "Press enter to reboot"
+read -r -p "Press enter to reboot"
 #reboot
