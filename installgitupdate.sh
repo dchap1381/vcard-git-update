@@ -1,14 +1,5 @@
 #!/bin/bash
 
-#download files from vcard-update-scripts Git
-if git clone https://github.com/dchap1381/vcard-git-check;
-	then
-		echo "vcard-update-scripts Git clone successful!"
-	else
-		echo "vcard-update-scripts Git clone NOT successful!!! Please try again."
-		exit 1
-fi
-
 #create working copies directory
 if mkdir /home/pi/update-scripts-wdir/;
 	then
@@ -19,12 +10,12 @@ if mkdir /home/pi/update-scripts-wdir/;
 fi
 
 #check if gitcheck.sh exists in Git directory
-if [ -e /home/pi/vcard-git-check/gitcheck.sh ];
+if [ -e /home/pi/vcard-git-update/gitcheck.sh ];
 	#gitcheck.sh does exist
 	then
 		echo "gitcheck.sh does exist!"
 		#mv gitcheck.sh from Git directory to working copy directory
-		if mv /home/pi/vcard-git-check/gitcheck.sh /home/pi/update-scripts-wdir/;
+		if mv /home/pi/vcard-git-update/gitcheck.sh /home/pi/update-scripts-wdir/;
 			#mv gitcheck.sh successful
 			then
 				echo "move gitcheck.sh to working directory successful!"
