@@ -54,5 +54,6 @@ if grep "/home/pi/update-scripts-wdir/gitcheck.sh" /etc/xdg/lxsession/LXDE-pi/au
 fi
 
 #reboot system to run gitcheck.sh
-read -n 1 -p "Press enter to reboot"
+sleep 5
+read -p "Press enter to reboot"
 #reboot
