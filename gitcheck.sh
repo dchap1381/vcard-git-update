@@ -1,97 +1,139 @@
 #!/bin/bash
 
-#cd into update-scripts-wdir Git directory
-if cd /home/pi/vcard-git-update/;
+cd-vcard-git-update()	{
+	/home/pi/vcard-git-update/
+}
+
+git-pull()	{
+	git pull | grep "Already up-to-date."
+}
+
+md5sum-gitcheck()	{
+	md5sum /home/pi/vcard-git-update/gitcheck.sh > tee /home/pi/update-scripts-wdir/gitcheck.md5sum
+}
+
+md5sum-updateinstall()	{
+	md5sum /home/pi/vcard-git-update/updateinstall.sh > tee /home/pi/update-scripts-wdir/updatinstall.md5sum
+}
+
+cd-update-scripts-wdir()	{
+	cd /home/pi/update-scripts-wdir
+}
+
+md5check-gitcheck()	{
+	md5sum -c /home/pi/update-scripts-wdir/gitcheck.sh
+}
+
+cp-gitcheck()	{
+	cp /home/pi/vcard-git-update/gitcheck.sh
+}
+
+md5check-updateinstall()	{
+	md5sum -c /home/pi/update-scripts-wdir/updateinstall.sh
+}
+
+cp-updateinstall()	{
+	cp /home/pi/vcard-git-update/updateinstall.sh
+}
+
+chmod-updatinstall()	{
+	chmod +x /home/pi/update-scripts-wdir/updateinstall.sh
+}
+
+run-updateinstall()	{
+	/home/pi/update-scripts-wdir/updateinstall.sh
+}
+
+rm-updateinstall()	{
+	rm /home/pi/update-scripts-wdir/updateinstall.sh
+}
+
+#cd in
+if cd-vcard-git-update;
 	then
-    		echo "cd into vcard-update-scripts working directory successful!"
-  	else
-    		echo "cd into vcard-update-scripts directory NOT successful!!! Exiting!"
-    		exit 1
+		echo "cd into vcard-git-update successful!"
+	else
+		echo "cd into vcard-git-update NOT successful"
 fi
 
-#wait for networking
+#wait for networking before proceeding
 sleep 15
 
-#check for Git updates
-if git pull | grep "Already up-to-date.";
-	#Git updates not available
+#check for Git updates to vcard-git-update directory
+if git-pull;
 	then
-    		echo "No changes detected. Nothing to do."
-		exit 1
-	#Git updates available
-  	else
-    		echo "Changes detected"
-fi
-
-#check for gitcheck.sh
-if [ -e /home/pi/vcard-git-update/gitcheck.sh ];
-	then
-		#gitcheck.sh does exist
-		echo "/home/pi/vcard-git-update/gitcheck.sh does exist!"
-		if mv /home/pi/vcard-git-upate/gitcheck.sh /home/pi/update-scripts-wdir/;
-			then
-			echo "move gitcheck.sh to working directory successful!"
-				if chmod +x /home/pi/update-scripts-wdir/gitcheck.sh;
-					#make gitcheck.sh executable
-					then
-						echo "make gitcheck.sh executable successful!"
-					else
-						echo "make gitcheck.sh executable NOT successful!!! Please try again."
-						exit 1
-				fi
-			else
-				echo "move gitcheck.sh to working directory NOT successful!!!"
-				exit 1
-		fi
+		echo "No changes detected!!!"
 	else
-		echo "/home/pi/vcard-git-update/gitcheck.sh does NOT exist!!! Please try again."
-		exit 1
+		echo "Changes detected!"
+			#create md5sum for gitcheck
+			if md5sum-gitcheck;
+				then
+					echo "gitcheck md5sum completed!"
+				else
+					echo "gitcheck md5sum NOT completed!!!"
+			fi
 
+			#create md5sum for updateinstall
+			if md5sum-updateinstall;
+				then
+					echo "updateinstall md5sum completed!"
+				else
+					echo "updateinstall md5sum NOT comppleted!!!"
+			fi
 fi
 
-#check for updateinstall.sh
-if [ -e /home/pi/vcard-git-update/updateinstall.sh ];
+if cd-update-scripts-wdir;
 	then
-		#updateinstall.sh does exist
-		echo "/home/pi/vcard-git-update/updateinstall.sh does exist!"
-		if mv /home/pi/vcard-git-update/updateinstall.sh /home/pi/update-scripts-wdir/;
-			then
-				echo "move updateinstall.sh to working directory successful!"
-				if chmod +x /home/pi/update-scripts-wdir/updateinstall.sh;
-					#make updateinstall.sh executable
-					then
-						echo "make updateinstall.sh executable successful!"
-						if /home/pi/update-scripts-wdir/updateinstall.sh;
+		echo "cd into update-scripts-wdir successful!"
+	else
+		echo "cd into update-scripts-wdir NOT successful!!!"
+fi
+
+if md5check-gitcheck;
+	then
+		echo "changes to gitcheck NOT found! keeping copy in working directory"
+	else
+		echo "changes to gitcheck found! copying to working directory"
+			if cp-gitcheck;
+				then
+					echo "copy gitcheck to working directory successful!"
+				else
+					echo "copy gitcheck to working directory NOT successful!!!"
+			fi
+fi
+
+if md5check-updateinstall;
+	then
+		echo "changes to updateinstall NOT found! keeping copy in working directory"
+	else
+		echo "changes to updateinstall found. copying to working directory"
+			if cp-updateinstall;
+				then
+					echo "copy updateinstall to working directory successful"
+						if chmod-updatinstall:
 							then
-								echo "updateinstall.sh completed successfully!"
+								echo "make updateinstall executable successful"
+									if run-updateinstall;
+										then
+											echo "updateinstall completed succesfully"
+										else
+											echo "updateinstall NOT completed successfully"
 							else
-								echo "updateinstall.sh NOT completed successfully!!! Please try again."
+								echo "make updateinstall executable NOT successful"
 						fi
-					else
-						echo "make updateinstall.sh executable NOT successful!!! Please try again."
-				fi
-			else
-				echo "move updateinstall.sh to working directory NOT successful!!!"
-				exit 1
-		fi
-	else
-		echo "/home/pi/vcard-git-update/updateinstall.sh does NOT exist!!! No updates available"
-
+								
+				else
+					echo "copy updateinstall to working directory NOT successful"
+			fi
 fi
 
-if /home/pi/update-scripts-wdir/updateinstall.sh;
+if rm-updateinstall:
 	then
-		echo "updateinstall.sh completed successfully!"
-		if rm /home/pi/update-scripts-wdir/updateinstall.sh;
-			then
-				echo "remove updateinstall.sh successful!"
-			else
-				echo "remove updateinstall.sh NOT successful. Please remove."
-		fi
+		echo "updateinstall removed"
 	else
-		echo "updateinstall.sh NOT completed successfully!!! Please try again."
+		echo "updateinstall not removed"
 fi
 
 sleep 5
-read -p "Press enter to continue"
+read -p "Press enter to reboot"
 #reboot
