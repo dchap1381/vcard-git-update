@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #cd into update-scripts-wdir Git directory
-if cd /home/pi/vcard-update-scripts/;
+if cd /home/pi/vcard-git-update/;
 	then
     		echo "cd into vcard-update-scripts working directory successful!"
   	else
