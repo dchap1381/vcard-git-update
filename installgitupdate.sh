@@ -55,5 +55,5 @@ fi
 
 #reboot system to run gitcheck.sh
 sleep 5
-read -p "Press enter to reboot"
+read -r -p "Press enter to reboot"
 #reboot
