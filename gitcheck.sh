@@ -93,4 +93,4 @@ if /home/pi/update-scripts-wdir/updateinstall.sh;
 fi
 
 read -p "Press enter to continue"
-reboot
+#reboot
