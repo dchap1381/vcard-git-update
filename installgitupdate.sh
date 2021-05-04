@@ -9,7 +9,7 @@ if git clone https://github.com/dchap1381/vcard-update-scripts;
 		exit 1
 fi
 
-#create working copy directory
+#create working copies directory
 if mkdir /home/pi/update-scripts-wdir/;
 	then
 		echo "update-scripts working directory created!"
@@ -18,7 +18,7 @@ if mkdir /home/pi/update-scripts-wdir/;
 		exit 1
 fi
 
-#mv files from git directory to working copy directory
+#mv gitcheck.sh from Git directory to working copy directory
 if mv /home/pi/vcard-update-scripts/gitcheck.sh /home/pi/update-scripts-wdir/;
 	then
 		echo "move gitcheck.sh to working directory successful!"
@@ -28,19 +28,7 @@ if mv /home/pi/vcard-update-scripts/gitcheck.sh /home/pi/update-scripts-wdir/;
 		
 fi
 
-if [ -e /home/pi/vcard-update-scripts/updateinstall.sh ];
-	then
-		if mv /home/pi/vcard-update-scripts/updateinstall.sh /home/pi/update-scripts-wdir/;
-			then
-				echo "move updateinstall.sh to working directory successful!"
-			else
-				echo "move updateinstall.sh to working directory NOT successful!!! No update available"
-		fi
-	else
-		echo "updateinstall.sh NOT found. No new updates currently available!!!"
-fi
-
-#make scripts in working directory executable
+#make gitcheck.sh in working directory executable
 if [ -e /home/pi/update-scripts-wdir/gitcheck.sh ];
 	then
 		if chmod +x /home/pi/update-scripts-wdir/gitcheck.sh;
@@ -51,18 +39,6 @@ if [ -e /home/pi/update-scripts-wdir/gitcheck.sh ];
 		fi
 	else
 		echo "gitcheck.sh NOT found!!! Please try again."
-fi
-
-if [ -e /home/pi/update-scripts-wdir/updateinstall.sh ];
-	then
-		if chmod +x /home/pi/update-scripts-wdir/updateinstall.sh;
-			then
-				echo "make updateinstall.sh executable successful!"
-			else
-				echo "make updateinstall.sh executable NOT successful!!! Please try again."
-		fi
-	else
-		echo "updateinstall.sh NOT found!!! No new updates available."
 fi
 
 #check if gitcheck.sh autostart exists
