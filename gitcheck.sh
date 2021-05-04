@@ -1,55 +1,55 @@
 #!/bin/bash
 
-cd-vcard-git-update()	{
+cd_vcard_git_update()	{
 	cd /home/pi/vcard-git-update/ || return
 }
 
-git-pull()	{
+git_pull()	{
 	git pull | grep "Already up-to-date."
 }
 
-md5sum-gitcheck()	{
+md5sum_gitcheck()	{
 	md5sum /home/pi/vcard-git-update/gitcheck.sh | tee /home/pi/update-scripts-wdir/gitcheck.md5sum
 }
 
-md5sum-updateinstall()	{
+md5sum_updateinstall()	{
 	md5sum /home/pi/vcard-git-update/updateinstall.sh | tee /home/pi/update-scripts-wdir/updatinstall.md5sum
 }
 
-cd-update-scripts-wdir()	{
+cd_update_scripts_wdir()	{
 	cd /home/pi/update-scripts-wdir || return
 }
 
-md5check-gitcheck()	{
+md5check_gitcheck()	{
 	md5sum -c /home/pi/update-scripts-wdir/gitcheck.sh
 }
 
-cp-gitcheck()	{
+cp_gitcheck()	{
 	cp /home/pi/vcard-git-update/gitcheck.sh /home/pi/update-scripts-wdir
 }
 
-md5check-updateinstall()	{
+md5check_updateinstall()	{
 	md5sum -c /home/pi/update-scripts-wdir/updateinstall.sh
 }
 
-cp-updateinstall()	{
+cp_updateinstall()	{
 	cp /home/pi/vcard-git-update/updateinstall.sh /home/pi/update-scripts-wdir
 }
 
-chmod-updatinstall()	{
+chmod_updatinstall()	{
 	chmod +x /home/pi/update-scripts-wdir/updateinstall.sh
 }
 
-run-updateinstall()	{
+run_updateinstall()	{
 	/home/pi/update-scripts-wdir/updateinstall.sh
 }
 
-rm-updateinstall()	{
+rm_updateinstall()	{
 	rm /home/pi/update-scripts-wdir/updateinstall.sh
 }
 
 #cd into Git directory before pull
-if cd-vcard-git-update;
+if cd_vcard_git_update;
 	then
 		echo "cd into vcard-git-update successful!"
 	else
@@ -60,13 +60,13 @@ fi
 sleep 15
 
 #check for Git updates to vcard-git-update directory
-if git-pull;
+if git_pull;
 	then
 		echo "No changes detected!!!"
 	else
 		echo "Changes detected!"
 			#create md5sum for gitcheck
-			if md5sum-gitcheck;
+			if md5sum_gitcheck;
 				then
 					echo "gitcheck md5sum completed!"
 				else
@@ -74,7 +74,7 @@ if git-pull;
 			fi
 
 			#create md5sum for updateinstall
-			if md5sum-updateinstall;
+			if md5sum_updateinstall;
 				then
 					echo "updateinstall md5sum completed!"
 				else
@@ -82,7 +82,7 @@ if git-pull;
 			fi
 fi
 
-if cd-update-scripts-wdir;
+if cd_update_scripts_wdir;
 	then
 		echo "cd into update-scripts-wdir successful!"
 	else
@@ -90,12 +90,12 @@ if cd-update-scripts-wdir;
 fi
 
 #compare gitcheck md5sum to detect updates copying new version if found
-if md5check-gitcheck;
+if md5check_gitcheck;
 	then
 		echo "changes to gitcheck NOT found! keeping copy in working directory"
 	else
 		echo "changes to gitcheck found! copying to working directory"
-			if cp-gitcheck;
+			if cp_gitcheck;
 				then
 					echo "copy gitcheck to working directory successful!"
 				else
@@ -104,18 +104,18 @@ if md5check-gitcheck;
 fi
 
 #compare updateinstall md5sum to detect updates copying new version if found
-if md5check-updateinstall;
+if md5check_updateinstall;
 	then
 		echo "changes to updateinstall NOT found! keeping copy in working directory"
 	else
 		echo "changes to updateinstall found. copying to working directory"
-			if cp-updateinstall;
+			if cp_updateinstall;
 				then
 					echo "copy updateinstall to working directory successful"
-						if chmod-updatinstall;
+						if chmod_updatinstall;
 							then
 								echo "make updateinstall executable successful"
-									if run-updateinstall;
+									if run_updateinstall;
 										then
 											echo "updateinstall completed succesfully"
 										else
@@ -131,7 +131,7 @@ if md5check-updateinstall;
 fi
 
 #remove updateinstall script after executing
-if rm-updateinstall:
+if rm_updateinstall:
 	then
 		echo "updateinstall removed"
 	else
