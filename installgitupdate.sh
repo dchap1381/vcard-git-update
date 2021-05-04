@@ -53,3 +53,6 @@ if grep "/home/pi/update-scripts-wdir/gitcheck.sh" /etc/xdg/lxsession/LXDE-pi/au
 				echo "gitcheck.sh NOT set to run at boot!!! Please try again."
 		fi
 fi
+
+#reboot system to run gitcheck.sh
+reboot
