@@ -13,7 +13,7 @@ md5sum_gitcheck()	{
 }
 
 md5sum_updateinstall()	{
-	md5sum /home/pi/vcard-git-update/updateinstall.sh | tee /home/pi/update-scripts-wdir/updatinstall.md5sum
+	md5sum /home/pi/vcard-git-update/updateinstall.sh | tee /home/pi/update-scripts-wdir/updateinstall.md5sum
 }
 
 cd_update_scripts_wdir()	{
