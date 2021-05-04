@@ -18,27 +18,32 @@ if mkdir /home/pi/update-scripts-wdir/;
 		exit 1
 fi
 
-#mv gitcheck.sh from Git directory to working copy directory
-if mv /home/pi/vcard-update-scripts/gitcheck.sh /home/pi/update-scripts-wdir/;
+#check if gitcheck.sh exists in Git directory
+if [ -e /home/pi/vcard-update-scripts/gitcheck.sh ];
+	#gitcheck.sh does exist
 	then
-		echo "move gitcheck.sh to working directory successful!"
-	else
-		echo "move gitcheck.sh to working directory NOT successful!!! Please try again."
-		exit 1
-		
-fi
-
-#make gitcheck.sh in working directory executable
-if [ -e /home/pi/update-scripts-wdir/gitcheck.sh ];
-	then
-		if chmod +x /home/pi/update-scripts-wdir/gitcheck.sh;
+		echo "gitcheck.sh does exist!"
+		#mv gitcheck.sh from Git directory to working copy directory
+		if mv /home/pi/vcard-update-scripts/gitcheck.sh /home/pi/update-scripts-wdir/;
+			#mv gitcheck.sh successful
 			then
-				echo "make gitcheck.sh executable successful!"
+				echo "move gitcheck.sh to working directory successful!"
+				#make gitcheck.sh in working directory executable
+				if chmod +x /home/pi/update-scripts-wdir/gitcheck.sh;
+					then
+						echo "make gitcheck.sh executable successful!"
+					else
+						echo "make gitcheck.sh executable NOT successful!!! Please try again."
+				fi
+			#mv gitcheck.sh not successful
 			else
-				echo "make gitcheck.sh executable NOT successful!!! Please try again."
+				echo "move gitcheck.sh to working directory NOT successful!!! Please try again."
+				exit 1
 		fi
+	#gitcheck.sh does not exist
 	else
-		echo "gitcheck.sh NOT found!!! Please try again."
+		echo "gitcheck.sh does NOT exist!!!. Please try again."
+		exit 1
 fi
 
 #check if gitcheck.sh autostart exists
