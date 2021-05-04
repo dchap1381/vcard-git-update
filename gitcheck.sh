@@ -48,7 +48,7 @@ rm-updateinstall()	{
 	rm /home/pi/update-scripts-wdir/updateinstall.sh
 }
 
-#cd in
+#cd into Git directory before pull
 if cd-vcard-git-update;
 	then
 		echo "cd into vcard-git-update successful!"
@@ -89,6 +89,7 @@ if cd-update-scripts-wdir;
 		echo "cd into update-scripts-wdir NOT successful!!!"
 fi
 
+#compare gitcheck md5sum to detect updates copying new version if found
 if md5check-gitcheck;
 	then
 		echo "changes to gitcheck NOT found! keeping copy in working directory"
@@ -102,6 +103,7 @@ if md5check-gitcheck;
 			fi
 fi
 
+#compare updateinstall md5sum to detect updates copying new version if found
 if md5check-updateinstall;
 	then
 		echo "changes to updateinstall NOT found! keeping copy in working directory"
@@ -128,6 +130,7 @@ if md5check-updateinstall;
 			fi
 fi
 
+#remove updateinstall script after executing
 if rm-updateinstall:
 	then
 		echo "updateinstall removed"
