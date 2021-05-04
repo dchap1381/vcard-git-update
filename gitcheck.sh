@@ -131,7 +131,7 @@ if md5check_updateinstall;
 fi
 
 #remove updateinstall script after executing
-if rm_updateinstall:
+if rm_updateinstall;
 	then
 		echo "updateinstall removed"
 	else
