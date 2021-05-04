@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd-vcard-git-update()	{
-	/home/pi/vcard-git-update/
+	cd /home/pi/vcard-git-update/ || return
 }
 
 git-pull()	{
