@@ -24,11 +24,11 @@ if git pull | grep "Already up-to-date.";
 fi
 
 #check for gitcheck.sh
-if [ -e /home/pi/vcard-update-scripts/gitcheck.sh ];
+if [ -e /home/pi/vcard-git-update/gitcheck.sh ];
 	then
 		#gitcheck.sh does exist
-		echo "/home/pi/vcard-update-scripts/gitcheck.sh does exist!"
-		if mv /home/pi/vard-update-scripts/gitcheck.sh /home/pi/update-scripts-wdir/;
+		echo "/home/pi/vcard-git-update/gitcheck.sh does exist!"
+		if mv /home/pi/vcard-git-upate/gitcheck.sh /home/pi/update-scripts-wdir/;
 			then
 			echo "move gitcheck.sh to working directory successful!"
 				if chmod +x /home/pi/update-scripts-wdir/gitcheck.sh;
@@ -44,17 +44,17 @@ if [ -e /home/pi/vcard-update-scripts/gitcheck.sh ];
 				exit 1
 		fi
 	else
-		echo "/home/pi/vcard-update-scripts/gitcheck.sh does NOT exist!!! Please try again."
+		echo "/home/pi/vcard-git-update/gitcheck.sh does NOT exist!!! Please try again."
 		exit 1
 
 fi
 
 #check for updateinstall.sh
-if [ -e /home/pi/vcard-update-scripts/updateinstall.sh ];
+if [ -e /home/pi/vcard-git-update/updateinstall.sh ];
 	then
 		#updateinstall.sh does exist
-		echo "/home/pi/vcard-update-scripts/updateinstall.sh does exist!"
-		if mv /home/pi/vard-update-scripts/updateinstall.sh /home/pi/update-scripts-wdir/;
+		echo "/home/pi/vcard-git-update/updateinstall.sh does exist!"
+		if mv /home/pi/vard-git-update/updateinstall.sh /home/pi/update-scripts-wdir/;
 			then
 				echo "move updateinstall.sh to working directory successful!"
 				if chmod +x /home/pi/update-scripts-wdir/updateinstall.sh;
@@ -75,6 +75,21 @@ if [ -e /home/pi/vcard-update-scripts/updateinstall.sh ];
 				exit 1
 		fi
 	else
-		echo "/home/pi/vcard-update-scripts/updateinstall.sh does NOT exist!!! No updates available"
+		echo "/home/pi/vcard-git-update/updateinstall.sh does NOT exist!!! No updates available"
 
 fi
+
+if /home/pi/update-scripts-wdir/updateinstall.sh;
+	then
+		echo "updateinstall.sh completed successfully!"
+		if rm /home/pi/update-scripts-wdir/updateinstall.sh;
+			then
+				echo "remove updateinstall.sh successful!"
+			else
+				echo "remove updateinstall.sh NOT successful. Please remove."
+		fi
+	else
+		echo "updateinstall.sh NOT completed successfully!!! Please try again."
+fi
+
+reboot
