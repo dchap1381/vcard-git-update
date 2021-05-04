@@ -110,7 +110,7 @@ if md5check-updateinstall;
 			if cp-updateinstall;
 				then
 					echo "copy updateinstall to working directory successful"
-						if chmod-updatinstall:
+						if chmod-updatinstall;
 							then
 								echo "make updateinstall executable successful"
 									if run-updateinstall;
@@ -118,6 +118,7 @@ if md5check-updateinstall;
 											echo "updateinstall completed succesfully"
 										else
 											echo "updateinstall NOT completed successfully"
+									fi
 							else
 								echo "make updateinstall executable NOT successful"
 						fi
