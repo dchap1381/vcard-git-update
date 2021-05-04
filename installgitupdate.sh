@@ -6,7 +6,6 @@ if mkdir /home/pi/update-scripts-wdir/;
 		echo "update-scripts working directory created!"
 	else
 		echo "update-scripts working directory NOT created!!! Please try again."
-		exit 1
 fi
 
 #check if gitcheck.sh exists in Git directory
