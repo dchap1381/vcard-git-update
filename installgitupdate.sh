@@ -28,6 +28,12 @@ if [ -e /home/pi/vcard-git-update/gitcheck.sh ];
 				if chmod +x /home/pi/update-scripts-wdir/gitcheck.sh;
 					then
 						echo "make gitcheck.sh executable successful!"
+						if chown pi:pi /home/pi/update-scripts-wdir/gitcheck.sh;
+							then
+								echo "change ownership of gitcheck.sh to user pi successful!"
+							else
+								echo "change ownership of gitcehck.sh to user pi NOT successful!!! Please try again."
+						fi
 					else
 						echo "make gitcheck.sh executable NOT successful!!! Please try again."
 				fi
