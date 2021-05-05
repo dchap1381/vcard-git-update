@@ -9,11 +9,11 @@ git_pull()	{
 }
 
 md5sum_gitcheck()	{
-	md5sum /home/pi/vcard-git-update/gitcheck.sh | tee /home/pi/update-scripts-wdir/gitcheck.md5sum
+	md5sum /home/pi/vcard-git-update/gitcheck.sh | tee > /home/pi/update-scripts-wdir/gitcheck.md5sum
 }
 
 md5sum_updateinstall()	{
-	md5sum /home/pi/vcard-git-update/updateinstall.sh | tee /home/pi/update-scripts-wdir/updateinstall.md5sum
+	md5sum /home/pi/vcard-git-update/updateinstall.sh | tee > /home/pi/update-scripts-wdir/updateinstall.md5sum
 }
 	
 diff_gitcheck()	{
