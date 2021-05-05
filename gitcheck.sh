@@ -68,6 +68,14 @@ chown_updateinstall_md5sum()	{
 	chown pi:pi /home/pi/update-scripts-wdir/updateinstall.md5sum
 }
 
+gitcheck_exists()	{
+	[ -e /home/pi/vcard-git-update/gitcheck.sh ]
+}
+
+updateinstall_exists()	{
+	[ -e /home/pi/vcard-git-update/updateinstall.sh ]
+}
+
 #cd into Git directory before pull
 if cd_vcard_git_update;
 	then
@@ -93,32 +101,46 @@ if git_pull;
 		echo "Git pull NOT successful!!! Please try again."
 fi
 
-#create md5sum for gitcheck
-if md5sum_gitcheck;
+#check for existence of gitcheck
+if gitcheck_exists;
 	then
-		echo "gitcheck md5sum completed!"
-		if chown_gitcheck_md5sum;
+		echo "gitcheck.sh found!"
+		#create md5sum for gitcheck
+		if md5sum_gitcheck;
 			then
-				echo "change ownership of gitcheck.md5sum successful!"
+				echo "gitcheck md5sum completed!"
+				if chown_gitcheck_md5sum;
+					then
+						echo "change ownership of gitcheck.md5sum successful!"
+					else
+						echo "change ownership of gitcheck.md5sum NOT successful!!! Please try again."
+				fi
 			else
-				echo "change ownership of gitcheck.md5sum NOT successful!!! Please try again."
+				echo "gitcheck md5sum NOT completed!!!"
 		fi
 	else
-		echo "gitcheck md5sum NOT completed!!!"
+		echo "gitcheck.sh NOT found!!! Please try again."
 fi
 
-#create md5sum for updateinstall
-if md5sum_updateinstall;
+#check for existence of updateinstall
+if updateinstall_exists;
 	then
-		echo "updateinstall md5sum completed!"
-		if chown_updateinstall_md5sum;
+		echo "updateinstall.sh found!"
+		#create md5sum for updateinstall
+		if md5sum_updateinstall;
 			then
-				echo "change ownership of updateinstall.md5sum successful!"
+				echo "updateinstall md5sum completed!"
+				if chown_updateinstall_md5sum;
+					then
+						echo "change ownership of updateinstall.md5sum successful!"
+					else
+						echo "change ownership of updateinstall.md5sum NOT successful!!! Please try again."
+				fi
 			else
-				echo "change ownership of updateinstall.md5sum NOT successful!!! Please try again."
+				echo "updateinstall md5sum NOT comppleted!!!"
 		fi
 	else
-		echo "updateinstall md5sum NOT comppleted!!!"
+		echo "updateinstall.sh NOT found!!! Please try again."
 fi
 
 #cd into update-scripts-wdir working directory
