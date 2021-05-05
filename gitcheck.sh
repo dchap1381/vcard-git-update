@@ -195,6 +195,13 @@ if updateinstall_exists;
 											if run_updateinstall;
 												then
 													echo "updateinstall completed succesfully"
+													#remove updateinstall script after executing
+													if rm_updateinstall;
+														then
+															echo "updateinstall removed"
+														else
+															echo "updateinstall not removed"
+													fi
 												else
 													echo "updateinstall NOT completed successfully"
 											fi
@@ -248,14 +255,6 @@ fi
 #				echo "updateinstall NOT copied to update-scripts-wdir!!! Please try again."
 #		fi
 #fi
-
-#remove updateinstall script after executing
-if rm_updateinstall;
-	then
-		echo "updateinstall removed"
-	else
-		echo "updateinstall not removed"
-fi
 
 sleep 5
 read -r -p "Press enter to continue"
