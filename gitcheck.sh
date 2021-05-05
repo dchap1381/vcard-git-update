@@ -80,24 +80,25 @@ echo "Finished waiting!"
 #check for Git updates to vcard-git-update directory
 if git_pull;
 	then
-		echo "No changes detected!!!"
+		echo "Git pull successful!"
 	else
-		echo "Changes detected!"
-			#create md5sum for gitcheck
-			if md5sum_gitcheck;
-				then
-					echo "gitcheck md5sum completed!"
-				else
-					echo "gitcheck md5sum NOT completed!!!"
-			fi
+		echo "Git pull NOT successful!!! Please try again."
+fi
 
-			#create md5sum for updateinstall
-			if md5sum_updateinstall;
-				then
-					echo "updateinstall md5sum completed!"
-				else
-					echo "updateinstall md5sum NOT comppleted!!!"
-			fi
+#create md5sum for gitcheck
+if md5sum_gitcheck;
+	then
+		echo "gitcheck md5sum completed!"
+	else
+		echo "gitcheck md5sum NOT completed!!!"
+fi
+
+#create md5sum for updateinstall
+if md5sum_updateinstall;
+	then
+		echo "updateinstall md5sum completed!"
+	else
+		echo "updateinstall md5sum NOT comppleted!!!"
 fi
 
 if cd_update_scripts_wdir;
