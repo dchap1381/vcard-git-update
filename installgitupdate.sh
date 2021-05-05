@@ -65,6 +65,4 @@ if grep "/home/pi/update-scripts-wdir/gitcheck.sh" /etc/xdg/lxsession/LXDE-pi/au
 		fi
 fi
 
-sleep 5
-read -p "Press enter to reboot"
-reboot
+echo "Please reboot for changes to take effect"
