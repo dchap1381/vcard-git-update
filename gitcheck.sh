@@ -21,7 +21,7 @@ cd_update_scripts_wdir()	{
 }
 
 md5check_gitcheck()	{
-	md5sum -c /home/pi/update-scripts-wdir/gitcheck.sh
+	md5sum -c /home/pi/update-scripts-wdir/gitcheck.md5sum
 }
 
 cp_gitcheck()	{
@@ -29,7 +29,7 @@ cp_gitcheck()	{
 }
 
 md5check_updateinstall()	{
-	md5sum -c /home/pi/update-scripts-wdir/updateinstall.sh
+	md5sum -c /home/pi/update-scripts-wdir/updateinstall.md5sum
 }
 
 cp_updateinstall()	{
