@@ -43,7 +43,7 @@ if grep "/home/pi/update-scripts-wdir/gitcheck.sh" /etc/xdg/lxsession/LXDE-pi/au
 		echo "gitcheck.sh already set to run at boot!"
 	else
 		#gitcheck.sh not already set to run at boot
-		if cat "/home/pi/update-scripts-wdir/gitcheck.sh" >> /etc/xdg/lxsession/LXDE-pi/autostart;
+		if echo "/home/pi/update-scripts-wdir/gitcheck.sh" >> /etc/xdg/lxsession/LXDE-pi/autostart;
 			then
 				#set to run at boot
 				echo "gitcheck.sh set to run at boot!"
