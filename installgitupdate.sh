@@ -14,8 +14,8 @@ if [ -e /home/pi/vcard-git-update/gitcheck.sh ];
 	then
 		echo "gitcheck.sh does exist!"
 		#mv gitcheck.sh from Git directory to working copy directory
-		if mv /home/pi/vcard-git-update/gitcheck.sh /home/pi/update-scripts-wdir/;
-			#mv gitcheck.sh successful
+		if cp /home/pi/vcard-git-update/gitcheck.sh /home/pi/update-scripts-wdir/;
+			#cp gitcheck.sh successful
 			then
 				echo "move gitcheck.sh to working directory successful!"
 				#make gitcheck.sh in working directory executable
