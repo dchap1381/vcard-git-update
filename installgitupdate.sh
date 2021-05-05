@@ -66,5 +66,5 @@ if grep "/home/pi/update-scripts-wdir/gitcheck.sh" /etc/xdg/lxsession/LXDE-pi/au
 fi
 
 sleep 5
-read -r -p "Press enter to reboot"
+read -p "Press enter to reboot"
 reboot
