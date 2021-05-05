@@ -60,6 +60,14 @@ rm_updateinstall()	{
 	rm /home/pi/update-scripts-wdir/updateinstall.sh
 }
 
+chown_gitcheck_md5sum()	{
+	chown pi:pi /home/pi/update-scripts-wdir/gitcheck.md5sum
+}
+
+chown_updateinstall_md5sum()	{
+	chown pi:pi /home/pi/update-scripts-wdir/updateinstall.md5sum
+}
+
 #cd into Git directory before pull
 if cd_vcard_git_update;
 	then
@@ -89,6 +97,12 @@ fi
 if md5sum_gitcheck;
 	then
 		echo "gitcheck md5sum completed!"
+		if chown_gitcheck_md5sum;
+			then
+				echo "change ownership of gitcheck.md5sum successful!"
+			else
+				echo "change ownership of gitcheck.md5sum NOT successful!!! Please try again."
+		fi
 	else
 		echo "gitcheck md5sum NOT completed!!!"
 fi
@@ -97,10 +111,17 @@ fi
 if md5sum_updateinstall;
 	then
 		echo "updateinstall md5sum completed!"
+		if chown_updateinstall_md5sum;
+			then
+				echo "change ownership of updateinstall.md5sum successful!"
+			else
+				echo "change ownership of updateinstall.md5sum NOT successful!!! Please try again."
+		fi
 	else
 		echo "updateinstall md5sum NOT comppleted!!!"
 fi
 
+#cd into update-scripts-wdir working directory
 if cd_update_scripts_wdir;
 	then
 		echo "cd into update-scripts-wdir successful!"
