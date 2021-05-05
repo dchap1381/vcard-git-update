@@ -69,7 +69,13 @@ if cd_vcard_git_update;
 fi
 
 #wait for networking before proceeding
-sleep 15
+echo "Waiting for 15 seconds to ensure network connectivity."
+sleep 5
+echo "Waiting.."
+sleep 5
+echo "Waiting..."
+sleep 5
+echo "Finished waiting!"
 
 #check for Git updates to vcard-git-update directory
 if git_pull;
