@@ -204,5 +204,4 @@ if rm_updateinstall;
 fi
 
 sleep 5
-read -r -p "Press enter to reboot"
-#reboot
+read -r -p "Press enter to continue"
