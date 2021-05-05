@@ -151,51 +151,62 @@ if cd_update_scripts_wdir;
 		echo "cd into update-scripts-wdir NOT successful!!!"
 fi
 
-#compare gitcheck md5sum to detect updates copying new version if found
-if md5check_gitcheck;
+#check if gitcheck.sh exists
+if gitcheck_exists;
 	then
-		echo "changes to gitcheck NOT found! keeping copy in working directory"
-	else
-		echo "changes to gitcheck found! copying to working directory"
-			if cp_gitcheck;
-				then
-					echo "copy gitcheck to working directory successful!"
-					if chmod_gitcheck;
+		echo "gitcheck.sh found!"
+		#compare gitcheck md5sum to detect updates copying new version if found
+		if md5check_gitcheck;
+			then
+				echo "changes to gitcheck NOT found! keeping copy in working directory"
+			else
+				echo "changes to gitcheck found! copying to working directory"
+					if cp_gitcheck;
 						then
-							echo "make gitcheck executable successful!"
+							echo "copy gitcheck to working directory successful!"
+							if chmod_gitcheck;
+								then
+									echo "make gitcheck executable successful!"
+								else
+									echo "make gitcheck executable NOT successful!!! Please try again."
+							fi
 						else
-							echo "make gitcheck executable NOT successful!!! Please try again."
+							echo "copy gitcheck to working directory NOT successful!!!"
 					fi
-				else
-					echo "copy gitcheck to working directory NOT successful!!!"
-			fi
+		fi
 fi
 
-#compare updateinstall md5sum to detect updates copying new version if found
-if md5check_updateinstall;
+#check if updateinstall exists
+if updateinstall_exists;
 	then
-		echo "changes to updateinstall NOT found! keeping copy in working directory"
+		echo "updateinstall found!"
+		#compare updateinstall md5sum to detect updates copying new version if found
+		if md5check_updateinstall;
+			then
+				echo "changes to updateinstall NOT found! keeping copy in working directory"
+			else
+				echo "changes to updateinstall found. copying to working directory"
+					if cp_updateinstall;
+						then
+							echo "copy updateinstall to working directory successful"
+								if chmod_updatinstall;
+									then
+										echo "make updateinstall executable successful"
+											if run_updateinstall;
+												then
+													echo "updateinstall completed succesfully"
+												else
+													echo "updateinstall NOT completed successfully"
+											fi
+									else
+										echo "make updateinstall executable NOT successful"
+								fi
+						else
+							echo "copy updateinstall to working directory NOT successful"
+					fi
+		fi
 	else
-		echo "changes to updateinstall found. copying to working directory"
-			if cp_updateinstall;
-				then
-					echo "copy updateinstall to working directory successful"
-						if chmod_updatinstall;
-							then
-								echo "make updateinstall executable successful"
-									if run_updateinstall;
-										then
-											echo "updateinstall completed succesfully"
-										else
-											echo "updateinstall NOT completed successfully"
-									fi
-							else
-								echo "make updateinstall executable NOT successful"
-						fi
-								
-				else
-					echo "copy updateinstall to working directory NOT successful"
-			fi
+		echo "updateinstall NOT found!!! Please try again."
 fi
 
 #check gitcheck diff and copy new version if found
