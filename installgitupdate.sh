@@ -4,6 +4,12 @@
 if mkdir /home/pi/update-scripts-wdir/;
 	then
 		echo "update-scripts working directory created!"
+		if chown pi:pi /home/pi/update-scripts-wdir/;
+			then
+				echo "change ownership of update-scripts-wdir to user pi successful!"
+			else
+				echo "change ownership of update-scripts-wdir to user pi NOT successful!!! Please try again."
+		fi
 	else
 		echo "update-scripts working directory NOT created!!! Please try again."
 fi
