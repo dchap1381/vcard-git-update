@@ -25,7 +25,7 @@ md5check_gitcheck()	{
 }
 
 cp_gitcheck()	{
-	cp /home/pi/vcard-git-update/gitcheck.sh /home/pi/update-scripts-wdir
+	cp /home/pi/vcard-git-update/gitcheck.sh /home/pi/update-scripts-wdir/
 }
 
 md5check_updateinstall()	{
@@ -33,7 +33,11 @@ md5check_updateinstall()	{
 }
 
 cp_updateinstall()	{
-	cp /home/pi/vcard-git-update/updateinstall.sh /home/pi/update-scripts-wdir
+	cp /home/pi/vcard-git-update/updateinstall.sh /home/pi/update-scripts-wdir/
+}
+
+chmod_gitcheck()	{
+	chmod +x /home/pi/update-scripts-wdir/gitcheck.sh
 }
 
 chmod_updatinstall()	{
