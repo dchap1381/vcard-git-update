@@ -15,6 +15,14 @@ md5sum_gitcheck()	{
 md5sum_updateinstall()	{
 	md5sum /home/pi/vcard-git-update/updateinstall.sh | tee /home/pi/update-scripts-wdir/updateinstall.md5sum
 }
+	
+diff_gitcheck()	{
+	diff /home/pi/vcard-git-update/gitcheck.sh /home/pi/update-scripts-wdir/gitcheck.sh
+}
+
+diff_updateinstall()	{
+	diff /home/pi/vcard-git-update/updateinstall.sh /home/pi/update-scripts-wdir/updateinstall.sh
+}
 
 cd_update_scripts_wdir()	{
 	cd /home/pi/update-scripts-wdir || return
@@ -86,6 +94,13 @@ if git_pull;
 			fi
 fi
 
+if git_pull;
+	then
+		echo "No Git changes detected!!!"
+	else
+		echo "Git changes detected!"
+fi
+
 if cd_update_scripts_wdir;
 	then
 		echo "cd into update-scripts-wdir successful!"
@@ -102,6 +117,12 @@ if md5check_gitcheck;
 			if cp_gitcheck;
 				then
 					echo "copy gitcheck to working directory successful!"
+					if chmod_gitcheck;
+						then
+							echo "make gitcheck executable successful!"
+						else
+							echo "make gitcheck executable NOT successful!!! Please try again."
+					fi
 				else
 					echo "copy gitcheck to working directory NOT successful!!!"
 			fi
@@ -134,6 +155,46 @@ if md5check_updateinstall;
 			fi
 fi
 
+#check gitcheck diff and copy new version if found
+#if diff_gitcheck;
+#	then
+#		echo "No changes to gitcheck detected!"
+#	else
+#		echo "changes to gitcheck detected!"
+#		if cp_gitcheck;
+#			then
+#				echo "gitcheck copied to update-scripts-wdir!"
+#				if chmod_gitcheck;
+#					then
+#						echo "make gitcheck executable completed!"
+#					else
+#						echo "make gitcheck executable NOT completed!!! Please try again."
+#				fi
+#			else
+#				echo "gitcheck NOT copied to update-scripts-wdir!!! Please try again."
+#		fi
+#fi
+
+#check updateinstall diff and copy if new version found
+#if diff_updateinstall;
+#	then
+#		echo "No changes to updateinstall detected!"
+#	else
+#		echo "changes to updateinstall detected!"
+#		if cp_gitcheck;
+#			then
+#				echo "updateinstall copied to update-scripts-wdir!"
+#				if chmod_updateinstall;
+#					then
+#						echo "make updateinstall executable successful!"
+#					else
+#						echo "make updateinstall executable NOT successful!!! Please try again."
+#				fi
+#			else
+#				echo "updateinstall NOT copied to update-scripts-wdir!!! Please try again."
+#		fi
+#fi
+
 #remove updateinstall script after executing
 if rm_updateinstall;
 	then
@@ -143,5 +204,5 @@ if rm_updateinstall;
 fi
 
 sleep 5
-
+read -r -p "Press enter to reboot"
 #reboot
