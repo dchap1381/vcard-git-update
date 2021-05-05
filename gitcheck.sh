@@ -100,13 +100,6 @@ if git_pull;
 			fi
 fi
 
-if git_pull;
-	then
-		echo "No Git changes detected!!!"
-	else
-		echo "Git changes detected!"
-fi
-
 if cd_update_scripts_wdir;
 	then
 		echo "cd into update-scripts-wdir successful!"
