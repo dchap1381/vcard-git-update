@@ -15,14 +15,6 @@ md5sum_gitcheck()	{
 md5sum_updateinstall()	{
 	md5sum /home/pi/vcard-git-update/updateinstall.sh | tee /home/pi/update-scripts-wdir/updateinstall.md5sum
 }
-	
-diff_gitcheck()	{
-	diff /home/pi/vcard-git-update/gitcheck.sh /home/pi/update-scripts-wdir/gitcheck.sh
-}
-
-diff_updateinstall()	{
-	diff /home/pi/vcard-git-update/updateinstall.sh /home/pi/update-scripts-wdir/updateinstall.sh
-}
 
 cd_update_scripts_wdir()	{
 	cd /home/pi/update-scripts-wdir || return
@@ -101,48 +93,6 @@ if git_pull;
 		echo "Git pull NOT successful!!! Please try again."
 fi
 
-#check for existence of gitcheck
-if gitcheck_exists;
-	then
-		echo "gitcheck.sh found!"
-		#create md5sum for gitcheck
-		if md5sum_gitcheck;
-			then
-				echo "gitcheck md5sum completed!"
-				if chown_gitcheck_md5sum;
-					then
-						echo "change ownership of gitcheck.md5sum successful!"
-					else
-						echo "change ownership of gitcheck.md5sum NOT successful!!! Please try again."
-				fi
-			else
-				echo "gitcheck md5sum NOT completed!!!"
-		fi
-	else
-		echo "gitcheck.sh NOT found!!! Please try again."
-fi
-
-#check for existence of updateinstall
-if updateinstall_exists;
-	then
-		echo "updateinstall.sh found!"
-		#create md5sum for updateinstall
-		if md5sum_updateinstall;
-			then
-				echo "updateinstall md5sum completed!"
-				if chown_updateinstall_md5sum;
-					then
-						echo "change ownership of updateinstall.md5sum successful!"
-					else
-						echo "change ownership of updateinstall.md5sum NOT successful!!! Please try again."
-				fi
-			else
-				echo "updateinstall md5sum NOT comppleted!!!"
-		fi
-	else
-		echo "updateinstall.sh NOT found!!! Please try again."
-fi
-
 #cd into update-scripts-wdir working directory
 if cd_update_scripts_wdir;
 	then
@@ -155,106 +105,89 @@ fi
 if gitcheck_exists;
 	then
 		echo "gitcheck.sh found!"
-		#compare gitcheck md5sum to detect updates copying new version if found
-		if md5check_gitcheck;
+		if md5sum_gitcheck;
 			then
-				echo "changes to gitcheck NOT found! keeping copy in working directory"
+				echo "gitcheck md5sum completed!"
+				#compare gitcheck md5sum to detect updates
+				if chown_gitcheck_md5sum;
+					then
+						echo "change ownership of gitcheck md5sum completed!"
+						if md5check_gitcheck;
+							then
+								echo "changes to gitcheck NOT found! keeping copy in working directory"
+							else
+								#copying new version if found
+								echo "changes to gitcheck found! copying to working directory"
+								if cp_gitcheck;
+									then
+										echo "copy gitcheck to working directory successful!"
+										if chmod_gitcheck;
+											then
+												echo "make gitcheck executable successful!"
+											else
+												echo "make gitcheck executable NOT successful!!! Please try again."
+										fi
+									else
+										echo "copy gitcheck to working directory NOT successful!!!"
+								fi
+						fi
+					else
+						echo "change ownersup of gitcheck md5sum NOT competed!!! Please try again."
+				fi
 			else
-				echo "changes to gitcheck found! copying to working directory"
-					if cp_gitcheck;
-						then
-							echo "copy gitcheck to working directory successful!"
-							if chmod_gitcheck;
-								then
-									echo "make gitcheck executable successful!"
-								else
-									echo "make gitcheck executable NOT successful!!! Please try again."
-							fi
-						else
-							echo "copy gitcheck to working directory NOT successful!!!"
-					fi
+				echo "gitcheck md5sum NOT completed!!!. Please try again."
 		fi
+	else
+		echo "gitcheck.sh NOT found"
+
 fi
 
 #check if updateinstall exists
 if updateinstall_exists;
 	then
 		echo "updateinstall found!"
-		#compare updateinstall md5sum to detect updates copying new version if found
-		if md5check_updateinstall;
+		if md5sum_updateinstall;
 			then
-				echo "changes to updateinstall NOT found! keeping copy in working directory"
-			else
-				echo "changes to updateinstall found. copying to working directory"
-					if cp_updateinstall;
-						then
-							echo "copy updateinstall to working directory successful"
+				echo "updateinstall md5sum completed!"
+				#compare updateinstall md5sum to detect updates
+				if md5check_updateinstall;
+					then
+						echo "changes to updateinstall NOT found! keeping copy in working directory"
+					else
+						echo "changes to updateinstall found. copying to working directory"
+						#copying new version if found
+						if cp_updateinstall;
+							then
+								echo "copy updateinstall to working directory successful"
 								if chmod_updatinstall;
 									then
 										echo "make updateinstall executable successful"
-											if run_updateinstall;
-												then
-													echo "updateinstall completed succesfully"
-													#remove updateinstall script after executing
-													if rm_updateinstall;
-														then
-															echo "updateinstall removed"
-														else
-															echo "updateinstall not removed"
-													fi
-												else
-													echo "updateinstall NOT completed successfully"
-											fi
+										if run_updateinstall;
+											then
+												echo "updateinstall completed succesfully"
+												#remove updateinstall script after executing
+												if rm_updateinstall;
+													then
+														echo "updateinstall removed"
+													else
+														echo "updateinstall not removed"
+												fi
+											else
+												echo "updateinstall NOT completed successfully"
+										fi
 									else
 										echo "make updateinstall executable NOT successful"
 								fi
-						else
-							echo "copy updateinstall to working directory NOT successful"
-					fi
+							else
+								echo "copy updateinstall to working directory NOT successful"
+						fi
+				fi
+			else
+				echo "updateinstall md5sum NOT completed!!! Please try again."
 		fi
 	else
 		echo "updateinstall NOT found!!! Please try again."
 fi
-
-#check gitcheck diff and copy new version if found
-#if diff_gitcheck;
-#	then
-#		echo "No changes to gitcheck detected!"
-#	else
-#		echo "changes to gitcheck detected!"
-#		if cp_gitcheck;
-#			then
-#				echo "gitcheck copied to update-scripts-wdir!"
-#				if chmod_gitcheck;
-#					then
-#						echo "make gitcheck executable completed!"
-#					else
-#						echo "make gitcheck executable NOT completed!!! Please try again."
-#				fi
-#			else
-#				echo "gitcheck NOT copied to update-scripts-wdir!!! Please try again."
-#		fi
-#fi
-
-#check updateinstall diff and copy if new version found
-#if diff_updateinstall;
-#	then
-#		echo "No changes to updateinstall detected!"
-#	else
-#		echo "changes to updateinstall detected!"
-#		if cp_gitcheck;
-#			then
-#				echo "updateinstall copied to update-scripts-wdir!"
-#				if chmod_updateinstall;
-#					then
-#						echo "make updateinstall executable successful!"
-#					else
-#						echo "make updateinstall executable NOT successful!!! Please try again."
-#				fi
-#			else
-#				echo "updateinstall NOT copied to update-scripts-wdir!!! Please try again."
-#		fi
-#fi
 
 sleep 5
 read -r -p "Press enter to continue"
