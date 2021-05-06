@@ -1,4 +1,5 @@
 #!/bin/bash
+#testing modifications
 
 if [ -e /home/pi/Desktop/testfile.txt ];
   then
