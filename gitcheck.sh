@@ -141,7 +141,7 @@ if gitcheck_exists;
 							else
 								echo "change ownership of gitcheck md5sum NOT successful!!!"
 						fi
-					else
+				        else
 						echo "New gitcheck md5sum NOT successful!!!"
 				fi
 		fi
