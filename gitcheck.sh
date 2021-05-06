@@ -105,88 +105,76 @@ fi
 if gitcheck_exists;
 	then
 		echo "gitcheck.sh found!"
-		if md5sum_gitcheck;
+		if md5check_gitcheck;
 			then
-				echo "gitcheck md5sum completed!"
-				#compare gitcheck md5sum to detect updates
-				if chown_gitcheck_md5sum;
+				echo "changes to gitcheck NOT found!!! Keeping copy in working directory."
+			else
+				echo "changes to gitcheck found!"
+				if md5sum_gitcheck;
 					then
-						echo "change ownership of gitcheck md5sum completed!"
-						if md5check_gitcheck;
+						echo "New gitcheck md5sum successful"
+						if chown_gitcheck_md5sum;
 							then
-								echo "changes to gitcheck NOT found! keeping copy in working directory"
-							else
-								#copying new version if found
-								echo "changes to gitcheck found! copying to working directory"
+								echo "change ownership of gitcheck md5sum successful!"
 								if cp_gitcheck;
 									then
 										echo "copy gitcheck to working directory successful!"
 										if chmod_gitcheck;
 											then
 												echo "make gitcheck executable successful!"
-											else
-												echo "make gitcheck executable NOT successful!!! Please try again."
+											else 
+												echo "make gitcheck executable NOT successful!!!"
 										fi
 									else
 										echo "copy gitcheck to working directory NOT successful!!!"
 								fi
+							else
+								echo "change ownership of gitcheck md5sum NOT successful!!!"
 						fi
 					else
-						echo "change ownersup of gitcheck md5sum NOT competed!!! Please try again."
+						echo "New gitcheck md5sum NOT successful!!!"
 				fi
-			else
-				echo "gitcheck md5sum NOT completed!!!. Please try again."
 		fi
 	else
-		echo "gitcheck.sh NOT found"
-
+		echo "gitcheck.sh NOT found!!!"
 fi
 
 #check if updateinstall exists
 if updateinstall_exists;
 	then
 		echo "updateinstall found!"
-		if md5sum_updateinstall;
+		if md5check_updateinstall;
 			then
-				echo "updateinstall md5sum completed!"
-				#compare updateinstall md5sum to detect updates
-				if md5check_updateinstall;
+				echo "changes to updateinstall NOT found!!! Keeping copy in working directory"
+			else
+				echo "changes to updateinstall found!"
+				if md5sum_updateinstall;
 					then
-						echo "changes to updateinstall NOT found! keeping copy in working directory"
-					else
-						echo "changes to updateinstall found. copying to working directory"
-						#copying new version if found
-						if cp_updateinstall;
+						echo "new updateinstall md5sum successful!"
+						if chown_updateinstall_md5sum;
 							then
-								echo "copy updateinstall to working directory successful"
-								if chmod_updatinstall;
+								echo "change ownership of updateinstall md5sum successful!"
+								if cp_updateinstall;
 									then
-										echo "make updateinstall executable successful"
-										if run_updateinstall;
+										echo "copy updateinstall to working directory successful!"
+										if chmod_updatinstall;
 											then
-												echo "updateinstall completed succesfully"
-												#remove updateinstall script after executing
-												if rm_updateinstall;
-													then
-														echo "updateinstall removed"
-													else
-														echo "updateinstall not removed"
-												fi
+												echo "make updateinstall executable successful!"
 											else
-												echo "updateinstall NOT completed successfully"
+												echo "make updateisntall executable NOT successful!!!"
 										fi
 									else
-										echo "make updateinstall executable NOT successful"
+										echo " copy updateinstall to working directory NOT successful!!!"
 								fi
 							else
-								echo "copy updateinstall to working directory NOT successful"
+								echo "change ownershuo of updateinstall md5sum NOT successful!!!"
 						fi
+					else
+						echo "new updateinstall md5sum NOT successful!!!"
 				fi
-			else
-				echo "updateinstall md5sum NOT completed!!! Please try again."
 		fi
 	else
-		echo "updateinstall NOT found!!! Please try again."
+		echo "udpateinstall NOT found!!!"
 fi
 
 sleep 5
