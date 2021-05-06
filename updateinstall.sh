@@ -1,5 +1,6 @@
 #!/bin/bash
 #testing modifications
+#testing mods again
 
 if [ -e /home/pi/Desktop/testfile.txt ];
   then
