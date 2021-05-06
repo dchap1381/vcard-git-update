@@ -68,6 +68,10 @@ updateinstall_exists()	{
 	[ -e /home/pi/vcard-git-update/updateinstall.sh ]
 }
 
+run_updateinstall()	{
+	/home/pi/update-scripts-wdir/updateinstall.sh
+}
+
 #cd into Git directory before pull
 if cd_vcard_git_update;
 	then
@@ -122,6 +126,12 @@ if gitcheck_exists;
 										if chmod_gitcheck;
 											then
 												echo "make gitcheck executable successful!"
+												if run_updateinstall;
+													then
+														echo "execute updateinstall successful!"
+													else
+														echo "execute updateinstall NOT successful!!!"
+												fi
 											else 
 												echo "make gitcheck executable NOT successful!!!"
 										fi
