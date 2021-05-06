@@ -81,11 +81,17 @@ if cd_vcard_git_update;
 fi
 
 #wait for networking before proceeding
-echo "Waiting for 15 seconds to ensure network connectivity."
+echo "Waiting for 30 seconds to ensure network connectivity."
 sleep 5
 echo "Waiting.."
 sleep 5
 echo "Waiting..."
+sleep 5
+echo "Still waiting...."
+sleep 5
+echo "Waiting some more....."
+sleep 5
+echo "Yep... still waiting......"
 sleep 5
 echo "Finished waiting!"
 
