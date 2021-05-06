@@ -126,12 +126,6 @@ if gitcheck_exists;
 										if chmod_gitcheck;
 											then
 												echo "make gitcheck executable successful!"
-												if run_updateinstall;
-													then
-														echo "execute updateinstall successful!"
-													else
-														echo "execute updateinstall NOT successful!!!"
-												fi
 											else 
 												echo "make gitcheck executable NOT successful!!!"
 										fi
@@ -170,6 +164,12 @@ if updateinstall_exists;
 										if chmod_updatinstall;
 											then
 												echo "make updateinstall executable successful!"
+												if run_updateinstall;
+													then
+														echo "executing updateinstall successful!"
+													else
+														echo "executing updateinstall NOT successful!!! updates not applied!!!"
+												fi
 											else
 												echo "make updateisntall executable NOT successful!!!"
 										fi
