@@ -49,7 +49,7 @@ if [ -e /home/pi/vcard-git-update/gitcheck.sh ];
 fi
 
 #check if gitcheck.sh autostart exists
-if grep "/home/pi/update-scripts-wdir/gitcheck.sh" /etc/xdg/lxsession/LXDE-pi/autostart;
+if grep "sudo /home/pi/update-scripts-wdir/gitcheck.sh" /etc/xdg/lxsession/LXDE-pi/autostart;
 	then
 		#gitcheck.sh already set to run at boot
 		echo "gitcheck.sh already set to run at boot!"
