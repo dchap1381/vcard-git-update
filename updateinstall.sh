@@ -21,7 +21,7 @@ rm_vcarddesktop_shortcut()	{
 }
 
 chown_vcardstartsh()	{
-	chown pi:pi /home/pi/vcardstartsh
+	chown pi:pi /home/pi/vcardstart.sh
 }
 
 create_vcardstartsh()	{
