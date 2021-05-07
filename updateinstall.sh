@@ -5,7 +5,7 @@ check_vcardstartsh_autostart()	{
 }
 
 check_vcarddesktop_shortcut()	{
-	[ -e .config/autostart/vcard.desktop ]
+	[ -e /home/pi/.config/autostart/vcard.desktop ]
 }
 
 check_vcardstartsh_exists()	{
