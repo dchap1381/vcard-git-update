@@ -53,9 +53,7 @@ EOF
 # check if old vcard.desktop autostart exists
 if check_vcarddesktop_shortcut;
 	then
-		echo "old vcard.desktop autostart shortcut does exist!"
-	else
-		echo "old vcard.desktop autostart shortcut does NOT exist!!!"
+		echo "old vcard.desktop autostart shortcut does exist!!!"
 		# remove old vcard.desktop autostart
 		if rm_vcarddesktop_shortcut;
 			then
@@ -63,6 +61,9 @@ if check_vcarddesktop_shortcut;
 			else
 				echo "remove old vcard.desktop autostart shortcut NOT successful!!!"
 		fi
+	else
+		echo "old vcard.desktop autostart shortcut does NOT exist!"
+
 fi
 
 									
