@@ -45,7 +45,7 @@ EOF
 }
 
 create_vcardstartsh_autostart()	{
-	sudo cat >> /etc/xdg/lxsession/LXDE-pi/autostart << EOF
+	cat >> /etc/xdg/lxsession/LXDE-pi/autostart << EOF
 /home/pi/vcardstart.sh
 EOF
 }
