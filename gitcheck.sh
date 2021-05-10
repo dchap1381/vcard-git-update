@@ -74,11 +74,11 @@ run_updateinstall()	{
 }
 
 diff_gitcheck()	{
-	diff -q /home/pi/vcard-git-update/gitcheck.sh /home/pi/update-scripts-wdir/gitcheck.sh
+	diff /home/pi/vcard-git-update/gitcheck.sh /home/pi/update-scripts-wdir/gitcheck.sh
 }
 
 diff_updateinstall()	{
-	diff -q /home/pi/vcard-git-update/updateinstall.sh /home/pi/update-scripts-wdir/updateinstall.sh
+	diff /home/pi/vcard-git-update/updateinstall.sh /home/pi/update-scripts-wdir/updateinstall.sh
 }
 
 chown_gitcheck()	{
