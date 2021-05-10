@@ -192,6 +192,3 @@ if updateinstall_exists;
 	else
 		echo "udpateinstall NOT found!!!"
 fi
-
-sleep 5
-read -r -p "Press enter to continue"
