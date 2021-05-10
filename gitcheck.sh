@@ -131,7 +131,7 @@ if cd_update_scripts_wdir;
 		echo "cd into update-scripts-wdir NOT successful!!!"
 fi
 
-#check if gitcheck.sh exists
+#check if gitcheck exists
 if gitcheck_exists;
 then
 	echo "gitcheck.sh found."
@@ -163,7 +163,7 @@ else
 	echo "gitcheck.sh NOT found!!! Something went wrong. Please try again."
 fi
 
-#check if updateinstall.sh exists
+#check if updateinstall exists
 if updateinstall_exists;
 then
 	echo "updateinstall.sh found."
@@ -203,4 +203,3 @@ fi
 
 sleep 3
 read -p "press enter to continue" -r
-
