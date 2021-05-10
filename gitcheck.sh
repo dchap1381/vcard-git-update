@@ -199,6 +199,7 @@ then
 	fi
 else
 	echo "updateinstall.sh NOT found!!! Something went wrong. Please try again."
+fi
 
 sleep 3
 read -p "press enter to continue" -r
