@@ -17,7 +17,7 @@ chmod_vcardstartsh()	{
 }
 
 rm_vcarddesktop_shortcut()	{
-	rm /home/pi/.config/autostart/vcard.desktop
+	sudo rm /home/pi/.config/autostart/vcard.desktop
 }
 
 chown_vcardstartsh()	{
@@ -45,7 +45,7 @@ EOF
 }
 
 create_vcardstartsh_autostart()	{
-	cat >> /etc/xdg/lxsession/LXDE-pi/autostart << EOF
+	sudo cat >> /etc/xdg/lxsession/LXDE-pi/autostart << EOF
 /home/pi/vcardstart.sh
 EOF
 }
@@ -55,7 +55,7 @@ if check_vcarddesktop_shortcut;
 	then
 		echo "old vcard.desktop autostart shortcut does exist!!!"
 		# remove old vcard.desktop autostart
-		if sudo rm_vcarddesktop_shortcut;
+		if rm_vcarddesktop_shortcut;
 			then
 				echo "remove old vcard.dekstop autostart shortcut successful!"
 			else
@@ -74,7 +74,7 @@ if check_vcardstartsh_autostart;
 	else
 		echo "vcardstart.sh autostart shortcut does NOT exist!!!"
 		#create vcardstart link in autostart
-		if sudo create_vcardstartsh_autostart;
+		if create_vcardstartsh_autostart;
 			then
 				echo "create vcardstart.sh autostart successful!"
 			else
