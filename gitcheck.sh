@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#functions#
 cd_vcard_git_update()	{
 	cd /home/pi/vcard-git-update/ || return
 }
@@ -92,7 +93,7 @@ chown_updateinstall()	{
 #START OF SCRIPT#
 #################
 
-#cd into Git directory before pull
+#cd into Git directory before pull#
 if cd_vcard_git_update;
 	then
 		echo "cd into vcard-git-update successful!"
@@ -100,7 +101,7 @@ if cd_vcard_git_update;
 		echo "cd into vcard-git-update NOT successful"
 fi
 
-#wait for networking before proceeding
+#wait for networking before proceeding#
 echo "Waiting for 30 seconds to ensure network connectivity."
 sleep 5
 echo "Waiting.."
@@ -115,7 +116,7 @@ echo "Yep... still waiting......"
 sleep 5
 echo "Finished waiting!"
 
-#check for Git updates to vcard-git-update directory
+#check for Git updates to vcard-git-update directory#
 if git_pull;
 	then
 		echo "Git pull successful!"
@@ -123,7 +124,7 @@ if git_pull;
 		echo "Git pull NOT successful!!! Please try again."
 fi
 
-#cd into update-scripts-wdir working directory
+#cd into update-scripts-wdir working directory#
 if cd_update_scripts_wdir; 
 	then
 		echo "cd into update-scripts-wdir successful!"
@@ -131,7 +132,8 @@ if cd_update_scripts_wdir;
 		echo "cd into update-scripts-wdir NOT successful!!!"
 fi
 
-#check if gitcheck exists
+#check if gitcheck exists#
+
 if gitcheck_exists;
 then
 	echo "gitcheck.sh found."
@@ -163,7 +165,7 @@ else
 	echo "gitcheck.sh NOT found!!! Something went wrong. Please try again."
 fi
 
-#check if updateinstall exists
+#check if updateinstall exists#
 if updateinstall_exists;
 then
 	echo "updateinstall.sh found."
@@ -203,3 +205,4 @@ fi
 
 sleep 3
 read -p "press enter to continue" -r
+
