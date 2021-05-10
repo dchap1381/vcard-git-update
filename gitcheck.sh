@@ -137,7 +137,7 @@ then
 	echo "gitcheck.sh found."
 	if diff_gitcheck;
 	then
-		echo "no changes to gitcheck.sh found."
+		echo "no changes to gitcheck.sh found. nothing to do."
 	else
 		echo "changes to gitcheck.sh found."
 		if cp_gitcheck;
@@ -148,12 +148,12 @@ then
 				echo "change ownership of gitcheck.sh to user pi successful"
 				if chmod_gitcheck;
 				then
-					echo "make gitcheck.sh executable successful."
+					echo "make gitcheck.sh executbale successful."
 				else
-					echo "make gitcheck.sh executable NOT successful!!!"
+					echo "make gitcheck.sh execuabtle NOT successful!!!"
 				fi
 			else
-				echo "change ownership of gitcheck.sh to user pi NOT successful!!!"
+				echo "change ownership of gitcheck.sh NOT successful!!!"
 			fi
 		else
 			echo "copy gitcheck.sh to working directory NOT successful!!!"
