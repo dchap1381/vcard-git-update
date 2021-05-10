@@ -180,7 +180,7 @@ then
 			if chown_updateinstall;
 			then
 				echo "change ownership of updateinstall.sh to user pi succesful."
-				if chmod_updatinstall;
+				if chmod_updateinstall;
 				then
 					echo "make updateinstall.sh executable successful."
 					if run_updateinstall;
