@@ -85,7 +85,7 @@ chown_gitcheck()	{
 }
 
 chown_updateinstall()	{
-	chown pi:pi /home/pi/update-scripts-wdirupdateinstall.sh
+	chown pi:pi /home/pi/update-scripts-wdir/updateinstall.sh
 }
 
 #################
@@ -169,7 +169,7 @@ then
 	echo "updateinstall.sh found."
 	if diff_updateinstall;
 	then
-		echo "no chages to updateinstall.sh found. keeping copy in working directory"
+		echo "no changes to updateinstall.sh found. keeping copy in working directory"
 	else
 		echo "changes to updateinstall.sh found."
 		if cp_updateinstall;
@@ -203,3 +203,4 @@ fi
 
 sleep 3
 read -p "press enter to continue" -r
+
