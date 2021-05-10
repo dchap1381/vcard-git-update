@@ -115,5 +115,4 @@ fi
 
 echo "Please reboot to apply changes"
 sleep 3
-#read -p "Press enter to reboot!" -r
 reboot
