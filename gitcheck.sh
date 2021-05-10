@@ -190,7 +190,7 @@ then
 						echo "executing updateinstall.sh NOT sucessful!!!"
 					fi
 				else
-					echo "makee updateinstall.sh executable NOT successful!!!"
+					echo "make updateinstall.sh executable NOT successful!!!"
 				fi
 			else
 				echo "change ownership of updateinstall.sh to user pi NOT successful!!!"
