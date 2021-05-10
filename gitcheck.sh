@@ -41,7 +41,7 @@ chmod_gitcheck()	{
 	chmod +x /home/pi/update-scripts-wdir/gitcheck.sh
 }
 
-chmod_updatinstall()	{
+chmod_updateinstall()	{
 	chmod +x /home/pi/update-scripts-wdir/updateinstall.sh
 }
 
