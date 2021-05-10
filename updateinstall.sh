@@ -55,7 +55,7 @@ if check_vcarddesktop_shortcut;
 	then
 		echo "old vcard.desktop autostart shortcut does exist!!!"
 		# remove old vcard.desktop autostart
-		if rm_vcarddesktop_shortcut;
+		if sudo rm_vcarddesktop_shortcut;
 			then
 				echo "remove old vcard.dekstop autostart shortcut successful!"
 			else
@@ -74,7 +74,7 @@ if check_vcardstartsh_autostart;
 	else
 		echo "vcardstart.sh autostart shortcut does NOT exist!!!"
 		#create vcardstart link in autostart
-		if create_vcardstartsh_autostart;
+		if sudo create_vcardstartsh_autostart;
 			then
 				echo "create vcardstart.sh autostart successful!"
 			else
@@ -114,5 +114,6 @@ if check_vcardstartsh_exists;
 fi
 
 echo "Please reboot to apply changes"
+read -p "press ENTER to reboot" -r
 sleep 3
 reboot
