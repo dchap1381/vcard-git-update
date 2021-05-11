@@ -45,10 +45,6 @@ updateinstall_exists()	{
 	[ -e /home/pi/vcard-git-update/updateinstall.sh ]
 }
 
-run_updateinstall()	{
-	/home/pi/update-scripts-wdir/updateinstall.sh
-}
-
 diff_gitcheck()	{
 	diff /home/pi/vcard-git-update/gitcheck.sh /home/pi/update-scripts-wdir/gitcheck.sh
 }
@@ -179,5 +175,6 @@ else
 	echo "updateinstall.sh NOT found!!! Something went wrong. Please try again."
 fi
 
-sleep 3
-read -p "press enter to continue" -r
+###############
+#END OF SCRIPT#
+###############
