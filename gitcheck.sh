@@ -9,28 +9,12 @@ git_pull()	{
 	git pull | grep "Already up-to-date."
 }
 
-md5sum_gitcheck()	{
-	md5sum /home/pi/vcard-git-update/gitcheck.sh | tee /home/pi/update-scripts-wdir/gitcheck.md5sum
-}
-
-md5sum_updateinstall()	{
-	md5sum /home/pi/vcard-git-update/updateinstall.sh | tee /home/pi/update-scripts-wdir/updateinstall.md5sum
-}
-
 cd_update_scripts_wdir()	{
 	cd /home/pi/update-scripts-wdir || return
 }
 
-md5check_gitcheck()	{
-	md5sum -c /home/pi/update-scripts-wdir/gitcheck.md5sum
-}
-
 cp_gitcheck()	{
 	cp /home/pi/vcard-git-update/gitcheck.sh /home/pi/update-scripts-wdir/
-}
-
-md5check_updateinstall()	{
-	md5sum -c /home/pi/update-scripts-wdir/updateinstall.md5sum
 }
 
 cp_updateinstall()	{
@@ -53,14 +37,6 @@ rm_updateinstall()	{
 	rm /home/pi/update-scripts-wdir/updateinstall.sh
 }
 
-chown_gitcheck_md5sum()	{
-	chown pi:pi /home/pi/update-scripts-wdir/gitcheck.md5sum
-}
-
-chown_updateinstall_md5sum()	{
-	chown pi:pi /home/pi/update-scripts-wdir/updateinstall.md5sum
-}
-
 gitcheck_exists()	{
 	[ -e /home/pi/vcard-git-update/gitcheck.sh ]
 }
@@ -70,7 +46,7 @@ updateinstall_exists()	{
 }
 
 run_updateinstall()	{
-	sudo /home/pi/update-scripts-wdir/updateinstall.sh
+	/home/pi/update-scripts-wdir/updateinstall.sh
 }
 
 diff_gitcheck()	{
