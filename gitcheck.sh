@@ -70,7 +70,7 @@ updateinstall_exists()	{
 }
 
 run_updateinstall()	{
-	/home/pi/update-scripts-wdir/updateinstall.sh
+	sudo /home/pi/update-scripts-wdir/updateinstall.sh
 }
 
 diff_gitcheck()	{
@@ -205,4 +205,3 @@ fi
 
 sleep 3
 read -p "press enter to continue" -r
-
