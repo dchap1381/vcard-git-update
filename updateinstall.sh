@@ -17,7 +17,7 @@ chmod_vcardstartsh()	{
 }
 
 rm_vcarddesktop_shortcut()	{
-	sudo rm /home/pi/.config/autostart/vcard.desktop
+	rm /home/pi/.config/autostart/vcard.desktop
 }
 
 chown_vcardstartsh()	{
